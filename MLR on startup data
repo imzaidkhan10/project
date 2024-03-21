@@ -1,0 +1,118 @@
+import numpy as np 
+import pandas as pd
+df=pd.read_csv("50_Startups.csv")
+
+df.info
+df.corr()
+df.head()
+
+#boxplot
+
+df.boxplot("R&D Spend",vert=False)
+df.boxplot("Administration",vert=False)
+df.boxplot("Marketing Spend",vert=False)
+
+
+from sklearn.preprocessing import LabelEncoder
+LE=LabelEncoder()
+
+df["State"]=LE.fit_transform(df["State"])
+df["State"]=pd.DataFrame(df["State"])
+
+
+df["R&D Spend"]=LE.fit_transform(df["R&D Spend"])
+
+df["Administration"]=LE.fit_transform(df["Administration"])
+
+df["Marketing Spend"]=LE.fit_transform(df["Marketing Spend"])
+
+#splitting 
+
+X=df.iloc[:,0:4]
+Y=df["Profit"]
+
+X.corr()
+
+X1=df[["R&D Spend","Administration","State"]]
+
+X2=df[["R&D Spend","Marketing Spend"]]
+
+#model 1
+
+from sklearn.linear_model import LinearRegression
+LR=LinearRegression()
+LR.fit(X,Y)
+Y_pred=LR.predict(X)
+
+from sklearn.metrics import mean_squared_error
+mse=mean_squared_error(Y,Y_pred)
+
+#mse=78416791.01666646
+
+from sklearn.metrics import r2_score
+score=r2_score(Y,Y_pred)
+
+# score=95%
+
+pip install statsmodels
+import statsmodels.api as sma
+X_new = sma.add_constant(X)
+lm2 = sma.OLS(Y,X).fit()
+lm2.summary()
+
+
+#################################
+
+#model 2
+
+from sklearn.linear_model import LinearRegression
+LR=LinearRegression()
+LR.fit(X1,Y)
+Y_pred=LR.predict(X1)
+
+from sklearn.metrics import mean_squared_error
+mse=mean_squared_error(Y,Y_pred)
+
+#score=83086348.82511404
+
+from sklearn.metrics import r2_score
+score=r2_score(Y,Y_pred)
+
+#score=94%
+
+
+pip install statsmodels
+import statsmodels.api as sma
+X_new = sma.add_constant(X)
+lm2 = sma.OLS(Y,X1).fit()
+lm2.summary()
+
+##################################
+
+#model 3
+
+from sklearn.linear_model import LinearRegression
+LR=LinearRegression()
+LR.fit(X2,Y)
+Y_pred=LR.predict(X2)
+
+from sklearn.metrics import mean_squared_error
+mse=mean_squared_error(Y,Y_pred)
+mse=78887897.00648756
+
+from sklearn.metrics import r2_score
+score=r2_score(Y,Y_pred)
+score=95%
+
+pip install statsmodels
+import statsmodels.api as sma
+X_new = sma.add_constant(X)
+lm2 = sma.OLS(Y,X2).fit()
+lm2.summary()
+
+###############################################
+
+model 1 is best because r2 is high and p value of all variables
+is less than 0.05
+
+
