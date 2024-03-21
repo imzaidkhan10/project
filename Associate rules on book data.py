@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Nov  2 11:11:47 2022
-
-@author: Dell
-"""
-
-
-
 #Some modification is done to book data in excel and saved as book_new...
 #and i have send the modified excel sheet along with association rules answer folder...
 
