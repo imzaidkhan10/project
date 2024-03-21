@@ -1,0 +1,71 @@
+
+import numpy as np 
+
+import pandas as pd 
+
+df = pd.read_csv("glass.csv")
+
+df.shape
+
+df.head()
+
+#Split 
+
+Y=df["Type"]
+
+#MODEL1
+
+X=df.iloc[:,0:9]
+X
+list(X)
+#MODEL2
+
+#1=df.iloc[:,1:9]
+#X1
+#List(X1)
+
+df.info()
+
+X.corr()
+#X1.corr()
+# Standardization 
+
+from sklearn.preprocessing import MinMaxScaler
+MM=MinMaxScaler()
+
+X["RI"] = MM.fit_transform(X[["RI"]])
+
+X["Na"] = MM.fit_transform(X[["Na"]])
+
+X["Mg"] = MM.fit_transform(X[["Mg"]])
+
+X["Al"] = MM.fit_transform(X[["Al"]])
+
+X["Si"] = MM.fit_transform(X[["Si"]])
+
+X["K"] = MM.fit_transform(X[["K"]])
+
+X["Ca"] = MM.fit_transform(X[["Ca"]])
+
+X["Ba"] = MM.fit_transform(X[["Ba"]])
+
+X["Fe"] = MM.fit_transform(X[["Fe"]])                              
+                              
+#model fitting using X 
+
+from sklearn.neighbors import KNeighborsClassifier
+KNN=KNeighborsClassifier(n_neighbors=5,p=2)
+
+KNN.fit(X,Y)
+
+Y_predict=KNN.predict(X)
+                              
+from sklearn.metrics import accuracy_score
+
+AC= accuracy_score(Y,Y_predict)
+                              
+print(AC)                       
+
+#Accuracy is 78%    
+
+predict=KNN.predict(np.array([[1.5,12.8,0,1.8,73,0.9,10,0,0]]))
