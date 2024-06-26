@@ -1,5 +1,5 @@
 #Some modification is done to book data in excel and saved as book_new...
-#and i have send the modified excel sheet along with association rules answer folder...
+#and i have send the modified excel sheet along with association rules answer folder..
 
 import numpy  as np
 import pandas as pd
