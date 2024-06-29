@@ -27,7 +27,6 @@ df["age"]>UW
 df[df["age"]>UW].shape
 df["age"]=np.where(df["age"]>UW,UW,np.where(df["age"]<LW,LW,df["age"]))
 
-#
 
 df.boxplot("balance",vert=False)
 Q1=np.percentile(df["balance"],25)
