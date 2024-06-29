@@ -17,7 +17,7 @@ df.info()
 df.duplicated()
 df[df.duplicated()]
 
-#Standardization.....
+#Standardization...
 
 from sklearn.preprocessing import StandardScaler
 SS=StandardScaler()
