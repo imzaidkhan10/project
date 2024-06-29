@@ -10,7 +10,7 @@ df=pd.read_csv("forestfires.csv",delimiter=',')
 
 df.head()
 
-######### Spliting
+## Spliting
 
 X=df.iloc[:,:30]
 
